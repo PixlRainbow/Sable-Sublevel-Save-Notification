@@ -3,7 +3,8 @@
   "package": "com.pixlrainbow.sablesublevelsavenotification.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "SublevelSaveMixin"
+    "SublevelSaveMixin",
+    "SubLevelRegionFileMixin"
   ],
   "injectors": {
     "defaultRequire": 1
