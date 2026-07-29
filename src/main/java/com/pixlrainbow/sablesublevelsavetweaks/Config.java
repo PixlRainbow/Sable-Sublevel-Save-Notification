@@ -1,4 +1,4 @@
-package com.pixlrainbow.sablesublevelsavenotification;
+package com.pixlrainbow.sablesublevelsavetweaks;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
@@ -9,7 +9,7 @@ public class Config {
 
     private static final Builder BUILDER = new Builder();
 
-    private static final String TRANSLATION_KEY_PREFIX = SableSublevelSaveNotification.MODID + ".config";
+    private static final String TRANSLATION_KEY_PREFIX = SableSublevelSaveTweaks.MODID + ".config";
 
     /**
      * Whether to broadcast to all players in chat when Sable is saving sub-levels.

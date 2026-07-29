@@ -1,4 +1,4 @@
-package com.pixlrainbow.sablesublevelsavenotification.mixin;
+package com.pixlrainbow.sablesublevelsavetweaks.mixin;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.pixlrainbow.sablesublevelsavenotification.Config;
-import com.pixlrainbow.sablesublevelsavenotification.SableSublevelSaveNotification;
+import com.pixlrainbow.sablesublevelsavetweaks.Config;
+import com.pixlrainbow.sablesublevelsavetweaks.SableSublevelSaveTweaks;
 
 import dev.ryanhcode.sable.sublevel.storage.holding.SubLevelHoldingChunk;
 import dev.ryanhcode.sable.sublevel.storage.region.SubLevelRegionFile;
@@ -37,7 +37,7 @@ public abstract class SubLevelRegionFileMixin extends SubLevelStorageFile {
     public CompoundTag skipSavingEmptyRegions(CompoundTag tag) {
         boolean cullEnabled = Config.CLEAR_EMPTY_CHUNKS_WORLD_SAVE.getAsBoolean();
         if (cullEnabled && this.shouldCullRegion(tag)) {
-            SableSublevelSaveNotification.LOGGER.info("Cleaning sublevel pointers for chunk with no sublevels.");
+            SableSublevelSaveTweaks.LOGGER.info("Cleaning sublevel pointers for chunk with no sublevels.");
             return null;
         }
         return tag;
@@ -51,7 +51,7 @@ public abstract class SubLevelRegionFileMixin extends SubLevelStorageFile {
     public SubLevelHoldingChunk skipLoadingEmptyRegions(SubLevelHoldingChunk originalReturn, @Local CompoundTag tag) {
         boolean cullEnabled = Config.SKIP_EMPTY_CHUNKS_WORLD_LOAD.getAsBoolean();
         if (cullEnabled && originalReturn != null && tag != null && this.shouldCullRegion(tag)) {
-            SableSublevelSaveNotification.LOGGER.info("Skipping sublevel pointers for chunk with no sublevels.");
+            SableSublevelSaveTweaks.LOGGER.info("Skipping sublevel pointers for chunk with no sublevels.");
             return null;
         }
         return originalReturn;

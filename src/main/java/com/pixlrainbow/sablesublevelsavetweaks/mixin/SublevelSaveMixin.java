@@ -1,4 +1,4 @@
-package com.pixlrainbow.sablesublevelsavenotification.mixin;
+package com.pixlrainbow.sablesublevelsavetweaks.mixin;
 
 import dev.ryanhcode.sable.sublevel.storage.holding.SubLevelHoldingChunkMap;
 import net.minecraft.network.chat.Component;
@@ -7,7 +7,7 @@ import net.minecraft.server.players.PlayerList;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.pixlrainbow.sablesublevelsavenotification.Config;
+import com.pixlrainbow.sablesublevelsavetweaks.Config;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
