@@ -24,6 +24,12 @@ public class SableSublevelSaveNotification {
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
+        // Log a starting message for debug purposes.
+        modEventBus.addListener(this::logWelcome);
+    }
+
+    private void logWelcome(ServerStartingEvent event) {
         LOGGER.info("Hello from {}", MODID);
     }
+
 }
