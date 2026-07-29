@@ -7,12 +7,14 @@ import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.fml.ModContainer;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(SableSublevelSaveNotification.MODID)
 public class SableSublevelSaveNotification {
+
     // Define mod id in a common place for everything to reference
     public static final String MODID = "sablesublevelsavenotification";
     // Directly reference a slf4j logger
@@ -25,7 +27,7 @@ public class SableSublevelSaveNotification {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         // Log a starting message for debug purposes.
-        modEventBus.addListener(this::logWelcome);
+        NeoForge.EVENT_BUS.addListener(this::logWelcome);
     }
 
     private void logWelcome(ServerStartingEvent event) {
