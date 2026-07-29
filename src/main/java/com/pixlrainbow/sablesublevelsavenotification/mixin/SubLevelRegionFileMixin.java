@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
+import com.pixlrainbow.sablesublevelsavenotification.Config;
 import com.pixlrainbow.sablesublevelsavenotification.SableSublevelSaveNotification;
 
 import dev.ryanhcode.sable.sublevel.storage.holding.SubLevelHoldingChunk;
@@ -34,7 +35,8 @@ public abstract class SubLevelRegionFileMixin extends SubLevelStorageFile {
     )
     @Nullable
     public CompoundTag skipSavingEmptyRegions(CompoundTag tag) {
-        if (this.shouldCullRegion(tag)) {
+        boolean cullEnabled = Config.CLEAR_EMPTY_CHUNKS_WORLD_SAVE.getAsBoolean();
+        if (cullEnabled && this.shouldCullRegion(tag)) {
             SableSublevelSaveNotification.LOGGER.info("Cleaning sublevel pointers for chunk with no sublevels.");
             return null;
         }
@@ -47,7 +49,8 @@ public abstract class SubLevelRegionFileMixin extends SubLevelStorageFile {
     )
     @Nullable
     public SubLevelHoldingChunk skipLoadingEmptyRegions(SubLevelHoldingChunk originalReturn, @Local CompoundTag tag) {
-        if (originalReturn != null && tag != null && this.shouldCullRegion(tag)) {
+        boolean cullEnabled = Config.SKIP_EMPTY_CHUNKS_WORLD_LOAD.getAsBoolean();
+        if (cullEnabled && originalReturn != null && tag != null && this.shouldCullRegion(tag)) {
             SableSublevelSaveNotification.LOGGER.info("Skipping sublevel pointers for chunk with no sublevels.");
             return null;
         }

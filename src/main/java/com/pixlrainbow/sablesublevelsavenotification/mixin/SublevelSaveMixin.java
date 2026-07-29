@@ -7,6 +7,8 @@ import net.minecraft.server.players.PlayerList;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.pixlrainbow.sablesublevelsavenotification.Config;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,16 +24,23 @@ public abstract class SublevelSaveMixin implements AutoCloseable {
     public void logSave(Operation<Void> original) {
         PlayerList playerList = this.level.getServer().getPlayerList();
         String dimensionName = this.level.dimension().location().getPath();
+        boolean broadcastEnabled = Config.BROADCAST_CHAT_SABLE_SAVE.getAsBoolean();
 
-        playerList.broadcastSystemMessage(
-            Component.translatable("sub_level.chat.savingSubLevels", dimensionName),
-            false
-        );
+        if (broadcastEnabled) {
+            playerList.broadcastSystemMessage(
+                Component.translatable("sub_level.chat.savingSubLevels", dimensionName),
+                false
+            );
+        }
+
         original.call();
-        playerList.broadcastSystemMessage(
-            Component.translatable("sub_level.chat.savingSubLevelsDone", dimensionName),
-            false
-        );
+
+        if (broadcastEnabled) {
+            playerList.broadcastSystemMessage(
+                Component.translatable("sub_level.chat.savingSubLevelsDone", dimensionName),
+                false
+            );
+        }
     }
 
 }
