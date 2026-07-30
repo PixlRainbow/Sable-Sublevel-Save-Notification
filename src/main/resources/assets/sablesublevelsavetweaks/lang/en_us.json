@@ -1,6 +1,6 @@
 {
-  "sub_level.chat.savingSubLevels": "Sable saving sub-levels in %s...",
-  "sub_level.chat.savingSubLevelsDone": "Done saving sub-levels in %s!",
+  "sub_level.chat.savingSubLevels": "§bSable saving sub-levels in %s...",
+  "sub_level.chat.savingSubLevelsDone": "§bDone saving sub-levels in %s!",
   "sablesublevelsavetweaks.config.broadcastSableSave": "Broadcast in chat",
   "sablesublevelsavetweaks.config.broadcastSableSave.tooltip": "Broadcast to all players in chat when Sable is saving sub-levels.",
   "sablesublevelsavetweaks.config.skipEmptyChunksWorldLoad": "Skip loading chunks with no sub-levels",
